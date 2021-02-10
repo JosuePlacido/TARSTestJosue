@@ -9,7 +9,7 @@ namespace TARSTestJosue.Data
 		{
 			this.ChangeTracker.LazyLoadingEnabled = false;
 		}
-		public DbSet<Component> Cocmponents { get; set; }
+		public DbSet<Component> Components { get; set; }
 		public DbSet<Item> Items { get; set; }
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

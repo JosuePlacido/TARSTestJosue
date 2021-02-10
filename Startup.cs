@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TARSTestJosue.AutoMapper;
 using TARSTestJosue.Data;
+using TARSTestJosue.Data.DAO;
 
 namespace TARSTestJosue
 {
@@ -20,10 +22,17 @@ namespace TARSTestJosue
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddControllersWithViews();
+
+			services.AddAutoMapper(typeof(ComponentProfile));
+
 			services.AddDbContext<ApplicationContext>(
 				options => options.UseNpgsql(
 					Configuration.GetConnectionString("Default")));
+
+			services.AddControllersWithViews();
+			services.AddRazorPages();
+
+			services.AddScoped<IDAOComponent, ComponentDAO>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +59,12 @@ namespace TARSTestJosue
 			{
 				endpoints.MapControllerRoute(
 					name: "default",
-					pattern: "{controller=Home}/{action=Index}/{id?}");
+					pattern: "{action=Index}/{id?}",
+					defaults: new { controller = "Home", action = "Index" });
+				endpoints.MapControllerRoute(
+					name: "areaRoute",
+					pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+				endpoints.MapRazorPages();
 			});
 		}
 	}

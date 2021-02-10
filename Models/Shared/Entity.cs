@@ -5,7 +5,7 @@ namespace TARSTestJosue.Models.Shared
 {
 	public class Entity
 	{
-		public int Id { get; protected set; }
+		public int? Id { get; protected set; }
 		protected Entity(int id)
 		{
 			Id = id;
@@ -27,7 +27,7 @@ namespace TARSTestJosue.Models.Shared
 
 		public override int GetHashCode()
 		{
-			return 2108858624 + EqualityComparer<int>.Default.GetHashCode(Id);
+			return 2108858624 + EqualityComparer<int?>.Default.GetHashCode(Id);
 		}
 		public static bool operator ==(Entity left, Entity right)
 		{

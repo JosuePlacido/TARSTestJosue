@@ -9,6 +9,7 @@ namespace TARSTestJosue.Models
 	{
 		private Component() { }
 		public string Name { get; private set; }
+		public string Product { get; private set; }
 		public string Company { get; private set; }
 		public string Version { get; private set; }
 		public Status Status { get; private set; }
@@ -16,7 +17,10 @@ namespace TARSTestJosue.Models
 		public DateTime? DateBuy { get; private set; }
 		public decimal? DolarRealBuy { get; private set; }
 		public string Category { get; private set; }
+		public string URL { get; private set; }
 		public string Requirement { get; private set; }
+		[DataType(DataType.Date)]
+		public DateTime? LastUpdated { get; private set; }
 		public string Extra { get; private set; }
 		public int Priority { get; private set; }
 		public List<Item> Prices { get; private set; } = new List<Item>();
@@ -24,7 +28,7 @@ namespace TARSTestJosue.Models
 
 		public override string ToString()
 		{
-			return $"{Company} {Name} {Version}";
+			return $"{Company} {Product} {Version}";
 		}
 	}
 }

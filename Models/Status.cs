@@ -1,22 +1,35 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using TARSTestJosue.Models.Shared;
 
 namespace TARSTestJosue.Models
 {
 	public class Status : IEquatable<Status>
 	{
-		private Status(string status, string color = "#ffffff")
+		private Status(string description)
 		{
-			Description = status;
-			Color = color;
+			Description = description;
 		}
 
-		public static readonly Status Studyng = new Status("studying", "#ffaaaa");
-		public static readonly Status Selected = new Status("Selected", "#ff5500");
-		public static readonly Status Purchased = new Status("Purchased", "#aaccff");
-		public static readonly Status Comparing = new Status("Comparing", "#ffffaa");
-		public static readonly Status Alternative = new Status("Alternative", "#aaffbb");
+		public static readonly Status Studyng = new Status("Studyng");
+		public static readonly Status Selected = new Status("Selected");
+		public static readonly Status Purchased = new Status("Purchased");
+		public static readonly Status Comparing = new Status("Comparing");
+		public static readonly Status Alternative = new Status("Alternative");
+		private static readonly IDictionary<string, Status> _list = new Dictionary<string, Status>()
+		{
+			["Studyng"] = Studyng,
+			["Selected"] = Selected,
+			["Purchased"] = Purchased,
+			["Comparing"] = Comparing,
+			["Alternative"] = Alternative,
+		};
+		public static Status[] All()
+		{
+			return _list.Select(i => i.Value).ToArray();
+		}
 		public string Description { get; private set; }
 		public string Color { get; private set; }
 
@@ -24,7 +37,12 @@ namespace TARSTestJosue.Models
 		{
 			if (object.ReferenceEquals(other, null)) return false;
 			if (object.ReferenceEquals(other, this)) return true;
-			return this.Description.Equals(other.Description) && this.Color.Equals(other.Color);
+			return this.Description.Equals(other.Description);
+		}
+
+		public static Status ByName(string status)
+		{
+			return _list[status];
 		}
 
 		public override bool Equals(object obj)
