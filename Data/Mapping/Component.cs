@@ -18,8 +18,7 @@ namespace TARSTestJosue.Data
 				.IsRequired();
 			builder.Property(c => c.Company)
 				.HasColumnType("varchar(100)")
-				.HasMaxLength(100)
-				.IsRequired();
+				.HasMaxLength(100);
 
 			builder.Property(c => c.LastUpdated)
 				.IsRequired();
@@ -37,13 +36,6 @@ namespace TARSTestJosue.Data
 				.HasColumnName("Status")
 				.HasColumnType("varchar(30)")
 				.HasMaxLength(30)
-				.IsRequired();
-
-			builder.OwnsOne(c => c.Status)
-				.Property(s => s.Color)
-				.HasColumnType("varchar(7)")
-				.HasMaxLength(7)
-				.HasColumnName("StatusColor")
 				.IsRequired();
 
 			builder.Property(c => c.Company)

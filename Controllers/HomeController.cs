@@ -86,6 +86,9 @@ namespace TARSTestJosue.Controllers
 					_logger.LogError(ex.Message);
 				}
 			}
+			form.Categorys = await _dao.GetCategorys();
+			form.Brands = await _dao.GetCompanys();
+			form.Names = await _dao.GetNames();
 			return View(form);
 		}
 

@@ -18,23 +18,23 @@
 		<span class="row mb-3">
 			<fieldset class="form-group col-sm-6">
 				<label asp-for="Category" class="control-label"></label>
-				<input asp-for="Category" class="form-control" list="categorys"/>
+				<input asp-for="Category" required max-length="100" class="form-control" list="categorys"/>
+				<span asp-validation-for="Category" class="text-danger"></span>
 				<datalist id="categorys">
 					@foreach(var item in Model.Categorys){
 						<option value="@item">@item</option>
 					}
 				</datalist>
-				<span asp-validation-for="Category" class="text-danger"></span>
 			</fieldset>
 			<fieldset class="form-group col-sm-6">
 				<label asp-for="Name" class="control-label"></label>
-				<input asp-for="Name" class="form-control" list="names" />
+				<input asp-for="Name" required max-length="100" class="form-control" list="names" />
+				<span asp-validation-for="Name" class="text-danger"></span>
 				<datalist id="names">
 					@foreach(var item in Model.Names){
 						<option value="@item">@item</option>
 					}
 				</datalist>
-				<span asp-validation-for="Name" class="text-danger"></span>
 			</fieldset>
 		</span>
     </header>
@@ -43,37 +43,37 @@
 		<spen class="row mt-4 mb-3">
 			<fieldset class="form-group col-sm-6">
 				<label asp-for="Requirement" class="control-label">Requisite</label>
-				<input asp-for="Requirement" class="form-control" value="@Model.Requirement" />
+				<input asp-for="Requirement" max-length="100" class="form-control" value="@Model.Requirement" />
 				<span asp-validation-for="Requirement" class="text-danger"></span>
 			</fieldset>
 			<fieldset class="form-group col-sm-5">
 				<label asp-for="Company" class="control-label">Marker</label>
-				<input asp-for="Company" class="form-control" list="brands" />
+				<input asp-for="Company" max-length="100" class="form-control" list="brands" />
+				<span asp-validation-for="Company" class="text-danger"></span>
 					<datalist id="brands">
 						@foreach(var item in Model.Brands){
 							<option value="@item">@item</option>
 						}
 					</datalist>
-				<span asp-validation-for="Company" class="text-danger"></span>
 			</fieldset>
 			<fieldset class="form-group col-sm-6">
 				<label asp-for="Product" class="control-label"></label>
-				<input asp-for="Product" class="form-control" />
+				<input asp-for="Product" max-length="100" class="form-control" />
 				<span asp-validation-for="Product" class="text-danger"></span>
 			</fieldset>
 			<fieldset class="form-group col-sm-5">
 				<label asp-for="Version" class="control-label"></label>
-				<input asp-for="Version" class="form-control" />
+				<input asp-for="Version" max-length="100" class="form-control" />
 				<span asp-validation-for="Version" class="text-danger"></span>
 			</fieldset>
 			<fieldset class="form-group col-sm-6">
 				<label asp-for="URL" class="control-label"></label>
-				<input asp-for="URL" class="form-control" />
+				<input asp-for="URL" max-length="100" class="form-control" />
 				<span asp-validation-for="URL" class="text-danger"></span>
 			</fieldset>
 			<fieldset class="form-group col-12">
 				<label asp-for="Extra" class="control-label"></label>
-				<textarea asp-for="Extra" class="form-control" rows="5"></textarea>
+				<textarea asp-for="Extra" max-length="200" class="form-control" rows="5"></textarea>
 				<span asp-validation-for="Extra" class="text-danger"></span>
 			</fieldset>
 
@@ -83,12 +83,12 @@
 		<h3>Status</h3>
 		<fieldset class="form-group mt-4">
 			<label asp-for="Priority" class="control-label">Priority of choose</label>
-			<input asp-for="Priority" class="form-control" />
+			<input asp-for="Priority" required class="form-control" />
 			<span asp-validation-for="Priority" class="text-danger"></span>
 		</fieldset>
         <fieldset class="form-group">
-            <label asp-for="Status" class="control-label"></label>
-            <select asp-for="Status" class="form-control"
+            <label asp-for="Status" max-length="30" class="control-label"></label>
+            <select asp-for="Status" required class="form-control"
 			asp-items=@Model.StatusOptions>
 			</select>
             <span asp-validation-for="Status" class="text-danger"></span>
@@ -115,22 +115,22 @@
 				<article class="col-sm-4">
 					<fieldset class="form-group mb-2">
 							<label asp-for="Store" class="control-label">Url</label>
-							<input asp-for="Store" class="form-control" value="@Model.Store[x]" />
+							<input asp-for="Store" required max-length="100" class="form-control" value="@Model.Store[x]" />
 							<span asp-validation-for="Store" class="text-danger"></span>
 					</fieldset>
 					<fieldset class="form-group mb-2">
 							<label asp-for="URLs" class="control-label"></label>
-							<input asp-for="URLs" class="form-control" value="@Model.URLs[x]" />
+							<input asp-for="URLs" required max-length="100" class="form-control" value="@Model.URLs[x]" />
 							<span asp-validation-for="URLs" class="text-danger"></span>
 					</fieldset>
 					<fieldset class="form-group mb-2">
 							<label asp-for="Amount" class="control-label"></label>
-							<input asp-for="Amount" class="form-control" value="@Model.Amount[x]" />
+							<input asp-for="Amount" required class="form-control" value="@Model.Amount[x]" />
 							<span asp-validation-for="Amount" class="text-danger"></span>
 					</fieldset>
 					<fieldset class="form-group mb-2">
 							<label asp-for="Currency" class="control-label"></label>
-							<select value="@Model.Currency[x]" name="Currency" class="form-control">
+							<select value="@Model.Currency[x]" max-length="5" required name="Currency" class="form-control">
 								<option selected="@(Model.Currency[x] == "$")" value="$">(USD) Dolar</option>
 								<option selected="@(Model.Currency[x] == "R$")" value="R$">(BRL) Real</option>
 							</select>
@@ -142,7 +142,7 @@
 
 		}
 	</footer>
-		<input class="btn btn-primary m-3" type="submit" value="Save"/>
+	<input class="btn btn-primary m-3" type="submit" onclick="validate()" value="Save"/>
 
 </form>
 

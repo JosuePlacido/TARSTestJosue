@@ -24,4 +24,7 @@ body {
 	display: flex;
 	justify-content: center;
 }
+.error{
+	border-color: red;
+}
 

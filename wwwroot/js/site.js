@@ -33,22 +33,22 @@ const template = `
 			<article class="col-sm-4">
 				<fieldset class="form-group mb-2">
 						<label for="Store" class="control-label">Store</label>
-						<input name="Store" class="form-control"/>
+						<input name="Store" required max-length="100" class="form-control"/>
 						<span for="Store" class="text-danger"></span>
 				</fieldset>
 				<fieldset class="form-group mb-2">
 						<label for="URLs" class="control-label">Url</label>
-						<input name="URLs" class="form-control"/>
+						<input name="URLs" required max-length="100" class="form-control"/>
 						<span for="URLs" class="text-danger"></span>
 				</fieldset>
 				<fieldset class="form-group mb-2">
 						<label for="Amount" class="control-label">Amount</label>
-						<input name="Amount" class="form-control"/>
+						<input name="Amount" required class="form-control"/>
 						<span for="Amount" class="text-danger"></span>
 				</fieldset>
 				<fieldset class="form-group mb-2">
 						<label for="Currency" class="control-label">Currency</label>
-						<select name="Currency" class="form-control">
+						<select name="Currency" required max-length="5" class="form-control">
 							<option  value="$">(USD) Dolar</option>
 							<option selected value="R$">(BRL) Real</option>
 						</select>
@@ -126,3 +126,39 @@ document.querySelectorAll(".btn-page").forEach((btn) =>
 		}
 	})
 );
+const validate = () => {
+	let valid = true;
+	document.querySelectorAll(".error").forEach((input) => {
+		input.nextElementSibling.innerHTML = "";
+		input.classList.remove("error");
+	});
+	document.querySelectorAll("*[required]").forEach((input) => {
+		if (!input.value) {
+			input.nextElementSibling.insertAdjacentText(
+				"beforeend",
+				"Campo obrigatório"
+			);
+			input.classList.add("error");
+			valid = false;
+		}
+	});
+	document.querySelectorAll("*[max-length]").forEach((input) => {
+		const max = parseInt(input.attributes["max-length"].value);
+		if (input.value && input.value.length > max) {
+			input.nextElementSibling.insertAdjacentText(
+				"beforeend",
+				`Máximo de ${max} caracteres`
+			);
+			input.classList.add("error");
+			valid = false;
+		}
+	});
+	return valid;
+};
+
+document.querySelector("form").addEventListener("submit", (ev) => {
+	if (!validate()) {
+		ev.preventDefault();
+		return false;
+	}
+});
