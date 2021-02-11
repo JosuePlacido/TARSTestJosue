@@ -68,7 +68,7 @@
 			</fieldset>
 			<fieldset class="form-group col-sm-6">
 				<label asp-for="URL" class="control-label"></label>
-				<input asp-for="URL" max-length="100" class="form-control" />
+				<input asp-for="URL" max-length="300" class="form-control" />
 				<span asp-validation-for="URL" class="text-danger"></span>
 			</fieldset>
 			<fieldset class="form-group col-12">
@@ -120,7 +120,7 @@
 					</fieldset>
 					<fieldset class="form-group mb-2">
 							<label asp-for="URLs" class="control-label"></label>
-							<input asp-for="URLs" required max-length="100" class="form-control" value="@Model.URLs[x]" />
+							<input asp-for="URLs" required max-length="300" class="form-control" value="@Model.URLs[x]" />
 							<span asp-validation-for="URLs" class="text-danger"></span>
 					</fieldset>
 					<fieldset class="form-group mb-2">

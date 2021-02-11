@@ -28,8 +28,8 @@ namespace TARSTestJosue.Data
 				.HasMaxLength(100);
 
 			builder.Property(c => c.URL)
-				.HasColumnType<string>("varchar(100)")
-				.HasMaxLength(100);
+				.HasColumnType<string>("varchar(300)")
+				.HasMaxLength(300);
 
 			builder.OwnsOne(c => c.Status)
 				.Property(s => s.Description)

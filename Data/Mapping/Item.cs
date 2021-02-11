@@ -21,8 +21,8 @@ namespace TARSTestJosue.Data
 				.IsRequired();
 
 			builder.Property(c => c.URL)
-				.HasColumnType("varchar(100)")
-				.HasMaxLength(100);
+				.HasColumnType("varchar(300)")
+				.HasMaxLength(300);
 
 			builder.OwnsOne(i => i.Price)
 				.Property(p => p.Currency)

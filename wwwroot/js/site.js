@@ -38,7 +38,7 @@ const template = `
 				</fieldset>
 				<fieldset class="form-group mb-2">
 						<label for="URLs" class="control-label">Url</label>
-						<input name="URLs" required max-length="100" class="form-control"/>
+						<input name="URLs" required max-length="300" class="form-control"/>
 						<span for="URLs" class="text-danger"></span>
 				</fieldset>
 				<fieldset class="form-group mb-2">

@@ -37,7 +37,7 @@ namespace TARSTestJosue.ViewModels
 		[Required]
 		[MaxLength(100)]
 		public string Category { get; set; }
-		[MaxLength(100)]
+		[MaxLength(300)]
 		public string URL { get; set; }
 		[MaxLength(200)]
 		public string Extra { get; set; }
